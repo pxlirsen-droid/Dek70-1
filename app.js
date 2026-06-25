@@ -12,10 +12,32 @@ document.getElementById("subjects");
 
 function addSubject(){
 
+function addSubject(){
+
+const semester =
+document.getElementById("semesterCount").value;
+
 const row =
 document.createElement("div");
 
 row.className="subject-row";
+
+let semesterInputs="";
+
+for(let i=1;i<=semester;i++){
+
+semesterInputs +=
+`
+<input
+type="number"
+class="grade"
+placeholder="เทอม ${i}"
+step="0.01"
+min="0"
+max="4">
+`;
+
+}
 
 row.innerHTML=`
 
@@ -24,19 +46,14 @@ type="text"
 class="subject"
 placeholder="ชื่อวิชา">
 
-<input
-type="number"
-class="grade"
-placeholder="เกรด"
-step="0.01">
+${semesterInputs}
 
 <input
 type="number"
 class="credit"
 placeholder="หน่วยกิต">
 
-<button
-onclick="removeSubject(this)">
+<button onclick="removeSubject(this)">
 ลบ
 </button>
 
@@ -111,8 +128,8 @@ document.getElementById("ranking")
 .innerHTML=ranking;
 
 recommendFaculty(data);
+analyzeField(data);
 }
-
 function recommendFaculty(data){
 
 let top=
@@ -162,3 +179,90 @@ document.getElementById("facultyResult")
 }
 
 addSubject();
+function analyzeField(data){
+
+let science=0;
+let math=0;
+let language=0;
+
+data.forEach(item=>{
+
+let name=item.name;
+
+if(
+name.includes("ชีว") ||
+name.includes("เคมี")
+){
+science += item.grade;
+}
+
+if(
+name.includes("คณิต") ||
+name.includes("ฟิสิกส์")
+){
+math += item.grade;
+}
+
+if(
+name.includes("ไทย") ||
+name.includes("อังกฤษ") ||
+name.includes("สังคม")
+){
+language += item.grade;
+}
+
+});
+
+let result="";
+
+if(science > math && science > language){
+
+result = `
+<h3>สายที่โดดเด่น</h3>
+
+วิทยาศาสตร์สุขภาพ
+
+เหมาะกับ
+
+• แพทยศาสตร์
+• เภสัชศาสตร์
+• พยาบาลศาสตร์
+• สัตวแพทยศาสตร์
+`;
+}
+
+else if(math > science && math > language){
+
+result = `
+<h3>สายที่โดดเด่น</h3>
+
+คำนวณและเทคโนโลยี
+
+เหมาะกับ
+
+• วิศวกรรมศาสตร์
+• วิทยาการคอมพิวเตอร์
+• สถิติ
+• บัญชี
+`;
+}
+
+else{
+
+result = `
+<h3>สายที่โดดเด่น</h3>
+
+ภาษาและสังคม
+
+เหมาะกับ
+
+• นิติศาสตร์
+• รัฐศาสตร์
+• นิเทศศาสตร์
+• อักษรศาสตร์
+`;
+}
+
+document.getElementById("facultyResult")
+.innerHTML += result;
+}
