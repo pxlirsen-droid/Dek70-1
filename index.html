@@ -1,13 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find My Future</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Find My Future</h1>
+
+<div class="menu">
+
+<button onclick="showPage('home')">
+หน้าแรก
+</button>
+
+<button onclick="showPage('grade')">
+คำนวณเกรด
+</button>
+
+</div>
+
+<div id="home" class="page">
+
+<h2>ยินดีต้อนรับ</h2>
+
+<p>
+เว็บไซต์ค้นหาตัวเองและแนะแนวการศึกษา
+</p>
+
+</div>
+
+<div id="grade" class="page" style="display:none;">
+
 <h2>คำนวณเกรดรายวิชา</h2>
 
 <div id="subjects"></div>
 
 <button onclick="addSubject()">
-เพิ่มวิชา
+➕ เพิ่มวิชา
 </button>
 
 <button onclick="calculateGrade()">
-คำนวณ
+📊 คำนวณ
 </button>
 
 <h3 id="gpaResult"></h3>
@@ -17,3 +55,10 @@
 <div id="ranking"></div>
 
 <div id="facultyResult"></div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
