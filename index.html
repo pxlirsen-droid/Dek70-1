@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCAS Hub 2026</title>
+    <!-- Google Fonts & FontAwesome for Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -60,7 +61,7 @@
             margin-top: 5px;
         }
 
-        /* Card Layout (แนวตั้งตามบรีฟ) */
+        /* Card Layout (แนวตั้ง) */
         .menu-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -170,17 +171,52 @@
             line-height: 1.6;
         }
 
-        /* สไตล์พิเศษเพิ่มเติมสำหรับระบบข้อสอบ T-GAT ดั้งเดิมของคุณเพื่อให้แสดงผลใน Dark mode สวยงาม */
-        .exam-header-style {
-            background: linear-gradient(135deg, #1565c0, #42a5f5);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            border-radius: 8px;
+        /* สไตล์คลังข้อสอบดั้งเดิมของแม่ (ปรับเป็น Dark Mode) */
+        #searchBox {
+            border: 2px solid var(--accent-purple);
+            background-color: #121212;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.95rem;
             margin-bottom: 15px;
         }
-        .exam-header-style h3 { font-size: 22px; }
-        .exam-header-style p { margin-top: 5px; font-size: 14px; color: #e3f2fd; }
+
+        .inner-exam-card {
+            background: #1a1a1c;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .inner-exam-card h3 {
+            color: #42a5f5;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .inner-exam-card p {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .btn-exam {
+            display: inline-block;
+            text-decoration: none;
+            background: #1976d2;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: .3s;
+            text-align: center;
+        }
+
+        .btn-exam:hover {
+            background: #0d47a1;
+        }
     </style>
 </head>
 <body>
@@ -191,6 +227,7 @@
         <p>ศูนย์รวมเครื่องมือสารสนเทศและการวิเคราะห์ข้อมูลเพื่อการเตรียมตัวเข้ามหาวิทยาลัย</p>
     </header>
 
+    <!-- ปุ่มที่ 1: ค้นหาข้อมูลอัจฉริยะ (AI) -->
     <div class="menu-card" onclick="toggleCard(this, event)">
         <div class="card-header">
             <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
@@ -206,6 +243,7 @@
         </div>
     </div>
 
+    <!-- ปุ่มที่ 2: คำนวนเกรด (GPAX) -->
     <div class="menu-card" onclick="toggleCard(this, event)">
         <div class="card-header">
             <div class="card-icon"><i class="fa-solid fa-chart-bar"></i></div>
@@ -245,6 +283,7 @@
         </div>
     </div>
 
+    <!-- ปุ่มที่ 3: ระบบดึงเกณฑ์คะแนนรวมทุกคณะ -->
     <div class="menu-card" onclick="toggleCard(this, event)">
         <div class="card-header">
             <div class="card-icon"><i class="fa-solid fa-clipboard-list"></i></div>
@@ -267,6 +306,7 @@
         </div>
     </div>
 
+    <!-- ปุ่มที่ 4: บันทึกจัดอันดับรายวัน -->
     <div class="menu-card" onclick="toggleCard(this, event)">
         <div class="card-header">
             <div class="card-icon"><i class="fa-solid fa-pen-to-square"></i></div>
@@ -295,6 +335,7 @@
         </div>
     </div>
 
+    <!-- ปุ่มที่ 5: ระบบค้นหาตัวเอง -->
     <div class="menu-card" onclick="toggleCard(this, event)">
         <div class="card-header">
             <div class="card-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
@@ -324,22 +365,35 @@
         </div>
     </div>
 
+    <!-- ปุ่มที่ 6: ตะลุยแนวข้อสอบเก่า (คลังข้อสอบ T-GAT ดั้งเดิมของแม่) -->
     <div class="menu-card" onclick="toggleCard(this, event)">
         <div class="card-header">
             <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
             <div class="card-info">
                 <h2>6. ตะลุยแนวข้อสอบเก่า</h2>
-                <p>จำลองทำข้อสอบวิชาชีพพร้อมระบบจับเวลาและระบบตรวจคะแนนอิงคำใบ้ทันที</p>
+                <p>ค้นหาและเปิดข้อสอบย้อนหลัง T-GAT 1, TGAT 2, TGAT 3 พร้อมเฉลยได้ทันที</p>
             </div>
         </div>
         <div class="card-content" onclick="stopProp(event)">
-            <div class="exam-header-style">
-                <h3>คลังข้อสอบ T-GAT พร้อมเฉลย</h3>
-                <p>ระบบจำลองฝึกฝนข้อสอบเสมือนจริงเพื่อความพร้อมในการสอบเข้ามหาวิทยาลัย</p>
+            <input type="text" id="searchBox" placeholder="🔍 ค้นหาข้อสอบ เช่น TGAT1, TGAT2, TGAT3..." onkeyup="searchExam()">
+
+            <div class="inner-exam-card">
+                <h3>T-GAT1 พร้อมเฉลย</h3>
+                <p>การสื่อสารภาษาอังกฤษ</p>
+                <a class="btn-exam" href="https://drive.google.com/file/d/1Rc56NswQ7pV7hPbZNOilpdgagFoVXuwH/view?usp=drivesdk" target="_blank">📄 เปิดข้อสอบ</a>
             </div>
-            <p style="color:var(--text-sub); font-size:0.9rem; text-align:center; padding:10px 0; border:1px dashed var(--border-color); border-radius:8px;">
-                📝 พร้อมสำหรับเริ่มทำข้อสอบ T-GAT ของคุณแล้ว! โครงสร้างพื้นฐานทางฟังก์ชันและ CSS สไตล์ถูกฝังไว้ในหน้าต่างหลักเรียบร้อยแล้วครับ
-            </p>
+
+            <div class="inner-exam-card">
+                <h3>T-GAT2 พร้อมเฉลย</h3>
+                <p>การคิดอย่างมีเหตุผล</p>
+                <a class="btn-exam" href="https://drive.google.com/file/d/16HSRGCag0YDaPGWk_fwH0bV9uKNtDLgq/view?usp=drivesdk" target="_blank">📄 เปิดข้อสอบ</a>
+            </div>
+
+            <div class="inner-exam-card">
+                <h3>T-GAT3 พร้อมเฉลย</h3>
+                <p>สมรรถนะการทำงาน</p>
+                <a class="btn-exam" href="https://drive.google.com/file/d/1oB_5yME_j3jnosH8UfFr3s1t9SIInPle/view?usp=drivesdk" target="_blank">📄 เปิดข้อสอบ</a>
+            </div>
         </div>
     </div>
 </div>
@@ -359,7 +413,7 @@
     }
 
     function stopProp(event) {
-        event.stopPropagation(); // กันไม่ให้กดข้างในแล้วยุบการ์ดกลับ
+        event.stopPropagation();
     }
 
     // ปุ่ม 1: ส่งคำค้นหาอัจฉริยะไปหา Gemini
@@ -385,7 +439,7 @@
         }
     }
 
-    // ปุ่ม 2: ฟังก์ชันคำนวณเกรดและดึงบิ๊กดาต้าวิเคราะห์อาชีพ
+    // ปุ่ม 2: ฟังก์ชันคำนวณเกรดและวิเคราะห์อาชีพ
     function calculateGPAX() {
         const terms = parseInt(document.getElementById('p2-terms').value);
         const subjects = {
@@ -524,7 +578,22 @@
         const prompt = `ฉันกำลังหาคณะที่ใช่ในระบบ TCAS โดยมีไลฟ์สไตล์คือ "${q1}" และสิ่งที่ไม่ชอบมากๆ คือ "${q2}" ช่วยวิเคราะห์และแนะนำ 3 คณะที่เหมาะที่สุด พร้อมเหตุผลและแนวทางการเตรียมตัวสอบให้อย่างละเอียดทีครับ`;
         window.open(`https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`, '_blank');
     }
+
+    // ปุ่ม 6: ระบบค้นหาข้อสอบดั้งเดิมของ
+    function searchExam() {
+        let input = document.getElementById("searchBox").value.toLowerCase();
+        let cards = document.getElementsByClassName("inner-exam-card");
+
+        for(let i = 0; i < cards.length; i++) {
+            let text = cards[i].innerText.toLowerCase();
+            if(text.indexOf(input) > -1) {
+                cards[i].style.display = "block";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
 </script>
 
 </body>
-            </html>
+                </html>
