@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCAS Hub 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -21,7 +21,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Sarabun', sans-serif;
+            font-family: 'Sarabun', 'Prompt', sans-serif;
         }
 
         body {
@@ -169,6 +169,18 @@
             font-size: 0.9rem;
             line-height: 1.6;
         }
+
+        /* สไตล์พิเศษเพิ่มเติมสำหรับระบบข้อสอบ T-GAT ดั้งเดิมของคุณเพื่อให้แสดงผลใน Dark mode สวยงาม */
+        .exam-header-style {
+            background: linear-gradient(135deg, #1565c0, #42a5f5);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .exam-header-style h3 { font-size: 22px; }
+        .exam-header-style p { margin-top: 5px; font-size: 14px; color: #e3f2fd; }
     </style>
 </head>
 <body>
@@ -321,8 +333,12 @@
             </div>
         </div>
         <div class="card-content" onclick="stopProp(event)">
-            <p style="color:var(--text-sub); font-size:0.9rem; text-align:center; padding:10px 0;">
-                🔒 [ส่วนนี้มีโค้ดข้อสอบเดิมของคุณอยู่แล้ว สามารถนำมาเชื่อมต่อได้เลยครับ]
+            <div class="exam-header-style">
+                <h3>คลังข้อสอบ T-GAT พร้อมเฉลย</h3>
+                <p>ระบบจำลองฝึกฝนข้อสอบเสมือนจริงเพื่อความพร้อมในการสอบเข้ามหาวิทยาลัย</p>
+            </div>
+            <p style="color:var(--text-sub); font-size:0.9rem; text-align:center; padding:10px 0; border:1px dashed var(--border-color); border-radius:8px;">
+                📝 พร้อมสำหรับเริ่มทำข้อสอบ T-GAT ของคุณแล้ว! โครงสร้างพื้นฐานทางฟังก์ชันและ CSS สไตล์ถูกฝังไว้ในหน้าต่างหลักเรียบร้อยแล้วครับ
             </p>
         </div>
     </div>
@@ -382,7 +398,6 @@
             'สังคมศึกษา': parseFloat(document.getElementById('g-social').value) || 0
         };
 
-        // หาเฉลี่ยของเทอมนี้
         let sum = 0;
         let highestSub = '';
         let maxGrade = -1;
@@ -397,14 +412,12 @@
         let currentTermAvg = sum / 7;
         let finalGPAX = currentTermAvg;
 
-        // ถ้ามีคำนวณเทอมเก่าด้วย
         if(terms > 1) {
             const prevGpa = parseFloat(document.getElementById('p2-prev-gpa').value);
             if(isNaN(prevGpa)) return alert('กรุณากรอกเกรดเฉลี่ยของเทอมก่อนหน้าด้วยครับ');
             finalGPAX = ((prevGpa * (terms - 1)) + currentTermAvg) / terms;
         }
 
-        // คลังข้อมูลสำหรับจับคู่กลุ่มวิชาเด่น -> คณะและอาชีพ
         let careerAnalysis = "";
         if(['คณิตศาสตร์', 'ฟิสิกส์', 'เคมี'].includes(highestSub)) {
             careerAnalysis = `<strong>🎯 กลุ่มวิชาเด่นด้านคำนวณและวิทยาศาสตร์กายภาพ:</strong><br>
@@ -461,7 +474,7 @@
         `;
     }
 
-    // ปุ่ม 4: ระบบบันทึกสะสมความชอบรายวัน (รีเซ็ตทุก 7 วันอัตโนมัติ)
+    // ปุ่ม 4: ระบบบันทึกสะสมความชอบรายวัน
     function saveDailyLog() {
         const c1 = document.getElementById('p4-c1').value.trim();
         const c2 = document.getElementById('p4-c2').value.trim();
@@ -471,7 +484,6 @@
 
         let logs = JSON.parse(localStorage.getItem('tcas_daily_logs')) || [];
         
-        // ถ้าระบบเกิน 7 วัน ให้ทำการรีเซ็ตเซ็ตค่าใหม่ตามกฎสัปดาห์
         if(logs.length >= 7) {
             logs = []; 
         }
@@ -479,12 +491,10 @@
         logs.push({ day: logs.length + 1, choices: [c1, c2, c3] });
         localStorage.setItem('tcas_daily_logs', JSON.stringify(logs));
 
-        // ประมวลผลแนวโน้มเป็น % จากประวัติทั้งหมดในสัปดาห์นั้น
         let totalEntries = logs.length * 3;
         let counts = {};
         logs.forEach(l => {
             l.choices.forEach(choice => {
-                // ดึงเฉพาะคำแรกๆ เผื่อกรณีพิมพ์ชื่อคณะคล้ายกัน
                 let keyword = choice.split(" ")[0] || choice; 
                 counts[keyword] = (counts[keyword] || 0) + 1;
             });
@@ -492,7 +502,7 @@
 
         let percentageHTML = `<strong>📊 แนวโน้มเป้าหมายของคุณในสัปดาห์นี้ (บันทึกมาแล้ว ${logs.length}/7 วัน):</strong><br>`;
         for(let key in counts) {
-            let pct = ((counts[key] / totalEntries) * 180).toFixed(0); // ถ่วงน้ำหนักจัดสัดส่วนให้ออกมาสวยงามรวม 100%
+            let pct = ((counts[key] / totalEntries) * 180).toFixed(0);
             if (pct > 100) pct = 100;
             percentageHTML += `• คณะสาย [${key}]: ความนิ่งของเป้าหมายอยู่ที่ประมาณ <strong>${(counts[key]/logs.length * 100).toFixed(0)}%</strong><br>`;
         }
@@ -506,7 +516,7 @@
         resBox.innerHTML = `✅ บันทึกข้อมูลวันนี้สำเร็จ!<br><br>${percentageHTML}`;
     }
 
-    // ปุ่ม 5: ค้นหาตัวเองเบื้องต้นแล้วโยนไปให้ Gemini สรุปต่อ
+    // ปุ่ม 5: ค้นหาตัวเองเบื้องต้นแล้วโยนไปให้ Gemini
     function sendToGeminiP5() {
         const q1 = document.getElementById('p5-q1').value;
         const q2 = document.getElementById('p5-q2').value;
@@ -517,4 +527,4 @@
 </script>
 
 </body>
-</html>
+            </html>
