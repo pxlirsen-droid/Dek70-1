@@ -3,704 +3,518 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎓 Study Gate - ศูนย์กลางเตรียมสอบเข้ามหาวิทยาลัยสุดล้ำ</title>
-    <link rel="icon" href="https://img.icons8.com/color/48/study.png" type="image/x-icon">
+    <title>TCAS Hub 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* ==============================
-           🎨 ส่วนกำหนดสไตล์ (CSS)
-           เน้นสไตล์ Neumorphism สะอาดตาและทันสมัย
-           ============================== */
         :root {
-            --primary-color: #2F80ED;
-            --bg-color: #E0E5EC;
-            --text-color: #333;
-            --sub-text-color: #666;
-            --shadow-light: rgba(255, 255, 255, 0.7);
-            --shadow-dark: rgba(163, 177, 198, 0.6);
-            --border-radius: 15px;
+            --bg-color: #121212;
+            --card-bg: #242426;
+            --accent-purple: #9d4edd;
+            --text-main: #ffffff;
+            --text-sub: #b3b3b3;
+            --border-color: #3a3a3c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
         }
 
         body {
-            font-family: 'Sarabun', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* ส่วนหัว (Navbar) */
-        header {
-            background-color: #fff;
-            padding: 15px 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-        }
-
-        /* ส่วนเนื้อหาหลัก */
-        main {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-        }
-
-        h2 {
-            font-size: 20px;
-            color: var(--sub-text-color);
-            font-weight: normal;
-        }
-
-        /* สไตล์กล่อง (Container) */
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
-            margin-bottom: 40px;
-        }
-
-        /* สไตล์ปุ่มแบบดั้งเดิม (ที่หนูชอบ) */
-        .button-group {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            background-color: #fff;
-            color: var(--text-color);
+            color: var(--text-main);
             padding: 20px;
-            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        header {
             text-align: center;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Card Layout (แนวตั้งตามบรีฟ) */
+        .menu-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-            font-weight: bold;
-            text-decoration: none;
-            display: block; /* สำหรับ link */
         }
 
-        .btn:hover {
-            box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
-            transform: translateY(2px);
+        .menu-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.15);
         }
 
-        .btn.active {
-            background-color: var(--primary-color);
-            color: #fff;
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
         }
 
-        /* สไตล์กล่องข้อมูลที่แสดง */
-        .data-content {
-            display: none; /* ซ่อนไว้ก่อน */
-            margin-top: 20px;
+        .card-icon {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-top: 3px;
         }
 
-        .data-content.active {
-            display: block; /* แสดงเมื่อเลือก */
+        .card-info h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        /* สไตล์ตารางสถิติและเกณฑ์คะแนน (ส่วนที่ 1 & 3) */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 3px 3px 6px var(--shadow-dark);
-            border-radius: var(--border-radius);
-            overflow: hidden; /* For border radius */
+        .card-info p {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            line-height: 1.4;
         }
 
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+        /* ส่วนเนื้อหาภายในปุ่มเมื่อคลิกเปิดขยาย */
+        .card-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
         }
 
-        th {
-            background-color: var(--primary-color);
-            color: #fff;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        /* ส่วนคำนวณเกรด (ส่วนที่ 2) */
-        .grade-calc-group {
-            margin-bottom: 15px;
-        }
-
-        .grade-calc-group label {
+        .card-content.active {
             display: block;
+        }
+
+        /* Form Elements */
+        label {
+            display: block;
+            font-size: 0.9rem;
             margin-bottom: 5px;
-            font-weight: bold;
+            color: var(--text-sub);
         }
 
-        .grade-calc-group input {
-            width: calc(100% - 22px);
+        input, select, textarea {
+            width: 100%;
             padding: 10px;
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            border: 1px solid #ccc;
-            box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+            color: white;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
         }
 
-        /* ส่วนค้นหาตัวเอง AI (ส่วนที่ 5) */
-        #ai-user-input {
-            width: calc(100% - 22px);
-            height: 100px;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--primary-color);
-            resize: none;
-            box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
-            margin-bottom: 15px;
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
         }
 
-        .ai-btn {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 12px 20px;
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+            color: white;
             border: none;
             border-radius: 8px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            width: 100%;
+            transition: opacity 0.2s;
         }
 
-        /* กราฟจัดอันดับ (ส่วนที่ 4) */
-        .chart-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            height: 200px;
-            padding: 20px;
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: var(--border-radius);
-            box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+        button:hover {
+            opacity: 0.9;
         }
 
-        .chart-bar {
-            width: 20px;
-            background-color: var(--primary-color);
-            border-radius: 10px 10px 0 0;
-            transition: height 0.5s ease;
-            position: relative;
-        }
-
-        .chart-label {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        /* ท้ายกระดาษ (Footer) */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--sub-text-color);
-            font-size: 14px;
+        .result-box {
+            background-color: #1a1a1a;
+            border-left: 4px solid var(--accent-purple);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
+<div class="container">
     <header>
-        <a href="#" class="logo">Study Gate</a>
-        <div class="nav-links">
-            <a href="#">หน้าหลัก</a>
-            <a href="#">บทความ</a>
-            <a href="#">เกี่ยวกับเรา</a>
-        </div>
+        <h1>🎓 TCAS Hub 2026</h1>
+        <p>ศูนย์รวมเครื่องมือสารสนเทศและการวิเคราะห์ข้อมูลเพื่อการเตรียมตัวเข้ามหาวิทยาลัย</p>
     </header>
 
-    <main>
-        <h1>Study Gate - ศูนย์รวมเตรียมสอบ TCAS69 ครบวงจร</h1>
-        <h2>อยากไปหน้าไหน กดปุ่มได้เลยจ้า!</h2>
-
-        <div class="button-group">
-            <a href="#" class="btn active" onclick="showContent(event, 'info')">1. ค้นสถิติคณะ/คะแนน</a>
-            <a href="#" class="btn" onclick="showContent(event, 'gpa')">2. คำนวณ GPAX</a>
-            <a href="#" class="btn" onclick="showContent(event, 'criteria')">3. ดูเกณฑ์รับ TCAS69</a>
-            <a href="#" class="btn" onclick="showContent(event, 'ranking')">4. จำลองจัดอันดับ</a>
-            <a href="#" class="btn" onclick="showContent(event, 'ai')">5. AI ค้นหาตัวเอง</a>
-            <a href="#" class="btn" onclick="showContent(event, 'quiz')">6. แนวข้อสอบเก่า</a>
+    <div class="menu-card" onclick="toggleCard(this, event)">
+        <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="card-info">
+                <h2>1. ค้นหาข้อมูลอัจฉริยะ (AI Analysis)</h2>
+                <p>พิมพ์คำค้นหาที่ต้องการ ระบบจะส่งข้อมูลไปให้ Gemini AI ช่วยวิเคราะห์เกณฑ์และโอกาสสอบติดเชิงลึกทันที</p>
+            </div>
         </div>
-
-        <div class="container">
-
-            <div id="info" class="data-content active">
-                <h3>🔍 ค้นสถิติคณะ/คะแนนต่ำสุด 3 ปีย้อนหลัง</h3>
-                <input type="text" id="search-input" placeholder="พิมพ์ชื่อคณะ, มหาวิทยาลัย, หรือสาขาวิชา">
-                <button onclick="searchCourses()">ค้นหา</button>
-                <table id="results-table">
-                    <thead>
-                        <tr>
-                            <th>คณะ/สาขาวิชา</th>
-                            <th>มหาวิทยาลัย</th>
-                            <th>ปี 68</th>
-                            <th>ปี 67</th>
-                            <th>ปี 66</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        </tbody>
-                </table>
-            </div>
-
-            <div id="gpa" class="data-content">
-                <h3>📊 คำนวณ GPAX และวิเคราะห์คณะตามจุดเด่นวิชา</h3>
-                <div class="grade-calc-group">
-                    <label>คณิตศาสตร์:</label>
-                    <input type="number" step="0.01" max="4.00" placeholder="0.00">
-                </div>
-                <div class="grade-calc-group">
-                    <label>ภาษาอังกฤษ:</label>
-                    <input type="number" step="0.01" max="4.00" placeholder="0.00">
-                </div>
-                <div class="grade-calc-group">
-                    <label>เคมี/ชีวะ/ฟิสิกส์ (เฉลี่ย):</label>
-                    <input type="number" step="0.01" max="4.00" placeholder="0.00">
-                </div>
-                <button class="ai-btn" onclick="calculateGPA()">คำนวณและวิเคราะห์</button>
-                <div id="gpa-result" style="margin-top: 15px;"></div>
-            </div>
-
-            <div id="criteria" class="data-content">
-                <h3>📋 สกัดเกณฑ์ค่าน้ำหนักคะแนนรวม TCAS69</h3>
-                <p>เลือกคณะที่สนใจเพื่อดูสัดส่วนคะแนนที่ใช้ (อิงปีล่าสุด)</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>คณะ</th>
-                            <th>สัดส่วนหลัก (%)</th>
-                            <th>คะแนนขั้นต่ำ (ถ้ามี)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>แพทยศาสตร์ (A-Level 100%)</td>
-                            <td>T-GAT: 20%, T-PAT1: 30%, A-Level: 50%</td>
-                            <td>T-PAT1 30%+</td>
-                        </tr>
-                        <tr>
-                            <td>วิศวกรรมศาสตร์ (T-GAT + T-PAT3)</td>
-                            <td>T-GAT: 40%, T-PAT3: 60%</td>
-                            <td>T-PAT3 50%+</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="ranking" class="data-content">
-                <h3>📝 บันทึกจัดอันดับ 4 อันดับยุทธศาสตร์</h3>
-                <p>ลองเลือกกลุ่มคณะที่สนใจในแต่ละอันดับ</p>
-                <select onchange="updateChart()" id="rank-1">
-                    <option value="none">-- เลือกคณะอันดับ 1 --</option>
-                    <option value="med">แพทยศาสตร์ (สายวิทย์สุขภาพ)</option>
-                    <option value="eng">วิศวกรรมศาสตร์ (สายวิทย์-เทคโนโลยี)</option>
-                    <option value="law">นิติศาสตร์ (สายศิลป์-สังคม)</option>
-                </select>
-                <div class="chart-container">
-                    <div class="chart-bar" id="bar-med" style="height: 0px;"><span class="chart-label">แพทย์</span></div>
-                    <div class="chart-bar" id="bar-eng" style="height: 0px;"><span class="chart-label">วิศวะ</span></div>
-                    <div class="chart-bar" id="bar-law" style="height: 0px;"><span class="chart-label">นิติ</span></div>
-                </div>
-            </div>
-
-            <div id="ai" class="data-content">
-                <h3>🧩 ระบบถอดรหัสความชอบและค้นหาตัวเองอัจฉริยะ (AI)</h3>
-                <textarea id="ai-user-input" placeholder="พิมพ์บอกเล่าความเป็นตัวคุณที่นี่ได้เลยนะอ้วน... (เช่น ชอบเล่นเกมวางแผน, ชอบคุยกับคนแปลกหน้า)"></textarea>
-                <button class="ai-btn" onclick="sendToAI()">ส่งให้ AI ช่วยวิเคราะห์คณะ</button>
-            </div>
-
-            <div id="quiz" class="data-content">
-                <h3>✍️ ตะลุยแนวข้อสอบเก่า</h3>
-                <p>เตรียมตัวให้พร้อมกับคลังข้อสอบวิชาหลัก</p>
-                <div class="button-group">
-                    <button class="btn">T-GAT</button>
-                    <button class="btn">T-PAT3</button>
-                    <button class="btn">A-Level คณิต 1</button>
-                </div>
-            </div>
-
+        <div class="card-content" onclick="stopProp(event)">
+            <label>ระบุคณะ มหาวิทยาลัย หรือข้อมูลที่อยากให้ AI วิเคราะห์:</label>
+            <textarea id="p1-input" rows="3" placeholder="เช่น 'อยากเข้า วิศวะ คอม จุฬาฯ ต้องเตรียมตัวยังไง คะแนนเซฟโซนอยู่ที่เท่าไหร่'"></textarea>
+            <button onclick="sendToGeminiP1()">ส่งไปวิเคราะห์บน Gemini AI</button>
         </div>
+    </div>
 
-    </main>
+    <div class="menu-card" onclick="toggleCard(this, event)">
+        <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-chart-bar"></i></div>
+            <div class="card-info">
+                <h2>2. คำนวณเกรด (GPAX & Career Guide)</h2>
+                <p>ประมวลผลเกรดรายวิชาหลัก พร้อมวิเคราะห์จุดเด่นเพื่อแนะนำคณะและอาชีพที่เหมาะสมอย่างละเอียด</p>
+            </div>
+        </div>
+        <div class="card-content" onclick="stopProp(event)">
+            <label>เลือกจำนวนเทอมที่ต้องการคำนวณ:</label>
+            <select id="p2-terms" onchange="handleTermChange()">
+                <option value="1">1 เทอมปัจจุบัน</option>
+                <option value="2">2 เทอม (รวมเทอมก่อนหน้า)</option>
+                <option value="3">3 เทอม (รวมเทอมก่อนหน้า)</option>
+                <option value="4">4 เทอม (รวมเทอมก่อนหน้า)</option>
+                <option value="5">5 เทอม (รวมเทอมก่อนหน้า)</option>
+                <option value="6">6 เทอม (รวมเทอมก่อนหน้า)</option>
+            </select>
 
-    <footer>
-        <p>© 2024 Study Gate - โครงงานเตรียมสอบ TCAS69 โดย "อ้วน"</p>
-    </footer>
+            <div id="p2-prev-gpa-container" style="display:none;">
+                <label id="p2-prev-label">เกรดเฉลี่ยสะสมของเทอมก่อนๆ หน้าทั้งหมด:</label>
+                <input type="number" id="p2-prev-gpa" step="0.01" min="0" max="4" placeholder="เช่น 3.50">
+            </div>
 
-    <script>
-        // ฐานข้อมูล JSON จำลอง (ทำให้ระบบค้นหาทำงานได้จริง!)
-        const coursesData = [
-            { "name": "แพทยศาสตร์", "uni": "จุฬาฯ", "y68": "71.25", "y67": "69.88", "y66": "68.50" },
-            { "name": "วิศวกรรมศาสตร์", "uni": "เกษตรฯ", "y68": "65.10", "y67": "63.50", "y66": "62.00" },
-            { "name": "นิติศาสตร์", "uni": "ธรรมศาสตร์", "y68": "58.75", "y67": "57.00", "y66": "56.25" },
-            { "name": "บริหารธุรกิจ", "uni": "มศว", "y68": "60.00", "y67": "58.50", "y66": "57.00" },
-            { "name": "อักษรศาสตร์", "uni": "จุฬาฯ", "y68": "63.25", "y67": "61.00", "y66": "59.50" }
-        ];
+            <p style="font-size:0.85rem; color:var(--accent-purple); margin-bottom:8px;">กรอกเกรดเฉลี่ยรายวิชาในเทอมนี้ (0.00 - 4.00):</p>
+            <div class="grid-2">
+                <div><label>ชีววิทยา:</label><input type="number" id="g-bio" step="0.01" min="0" max="4"></div>
+                <div><label>เคมี:</label><input type="number" id="g-chem" step="0.01" min="0" max="4"></div>
+                <div><label>ฟิสิกส์:</label><input type="number" id="g-phy" step="0.01" min="0" max="4"></div>
+                <div><label>คณิตศาสตร์:</label><input type="number" id="g-math" step="0.01" min="0" max="4"></div>
+                <div><label>ภาษาอังกฤษ:</label><input type="number" id="g-eng" step="0.01" min="0" max="4"></div>
+                <div><label>ภาษาไทย:</label><input type="number" id="g-thai" step="0.01" min="0" max="4"></div>
+                <div><label>สังคมศึกษา:</label><input type="number" id="g-social" step="0.01" min="0" max="4"></div>
+            </div>
+            <button onclick="calculateGPAX()">ประมวลผลและวิเคราะห์อาชีพ</button>
+            <div id="p2-result" class="result-box" style="display:none;"></div>
+        </div>
+    </div>
 
-        // ฟังก์ชันแสดงเนื้อหาตามปุ่มที่เลือก (ทำให้หน้าเว็บมีชีวิต!)
-        function showContent(event, contentId) {
-            event.preventDefault(); // ป้องกันไม่ให้หน้าเว็บเลื่อนขึ้นไปข้างบน
+    <div class="menu-card" onclick="toggleCard(this, event)">
+        <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+            <div class="card-info">
+                <h2>3. ระบบดึงเกณฑ์คะแนนรวมทุกคณะ</h2>
+                <p>เช็กจำนวนที่นั่งสถิติต่ำสุด-สูงสุด และสัดส่วนวิชาที่ต้องใช้สอบ อิงภาพรวมจากทุกมหาวิทยาลัย</p>
+            </div>
+        </div>
+        <div class="card-content" onclick="stopProp(event)">
+            <label>เลือกกลุ่มคณะที่สนใจ:</label>
+            <select id="p3-faculty" onchange="showFacultyInfo()">
+                <option value="">-- เลือกคณะ --</option>
+                <option value="med">แพทยศาสตร์ / ทันตะ / เภสัช</option>
+                <option value="eng">วิศวกรรมศาสตร์</option>
+                <option value="com">วิทยาศาสตร์ คอมพิวเตอร์ / ไอที</option>
+                <option value="biz">พาณิชยศาสตร์และการบัญชี / บริหาร</option>
+                <option value="arts">อักษรศาสตร์ / มนุษยศาสตร์ / ศิลปศาสตร์</option>
+            </select>
+            <div id="p3-result" class="result-box" style="display:none;"></div>
+        </div>
+    </div>
 
-            // ซ่อนเนื้อหาทั้งหมด
-            const contents = document.querySelectorAll('.data-content');
-            contents.forEach(content => content.classList.remove('active'));
+    <div class="menu-card" onclick="toggleCard(this, event)">
+        <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="card-info">
+                <h2>4. บันทึกจัดอันดับเป้าหมายรายวัน</h2>
+                <p>บันทึก 3 คณะที่อยากเข้าพร้อมเหตุผล พร้อมระบบคำนวณแนวโน้มความชอบสะสมรอบ 1 สัปดาห์</p>
+            </div>
+        </div>
+        <div class="card-content" onclick="stopProp(event)">
+            <div class="grid-2" style="grid-template-columns:1fr;">
+                <div>
+                    <label>อันดับ 1 คณะที่อยากเข้า + เหตุผล:</label>
+                    <input type="text" id="p4-c1" placeholder="เช่น วิศวะ คอม เพราะชอบเขียนโค้ด">
+                </div>
+                <div>
+                    <label>อันดับ 2 คณะที่อยากเข้า + เหตุผล:</label>
+                    <input type="text" id="p4-c2" placeholder="เช่น บริหารธุรกิจ เพราะอยากทำสตาร์ทอัพ">
+                </div>
+                <div>
+                    <label>อันดับ 3 คณะที่อยากเข้า + เหตุผล:</label>
+                    <input type="text" id="p4-c3" placeholder="เช่น ครุศาสตร์ เพราะอยากเป็นครู">
+                </div>
+            </div>
+            <button onclick="saveDailyLog()">บันทึกเป้าหมายวันนี้</button>
+            <div id="p4-result" class="result-box" style="display:none;"></div>
+        </div>
+    </div>
 
-            // แสดงเนื้อหาที่เลือก
-            document.getElementById(contentId).classList.add('active');
+    <div class="menu-card" onclick="toggleCard(this, event)">
+        <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+            <div class="card-info">
+                <h2>5. ระบบค้นหาตัวเองอัจฉริยะ</h2>
+                <p>ตอบแบบสอบถามเบื้องต้นเพื่อประเมินบุคลิกภาพ จากนั้นส่งต่อไปวิเคราะห์และถอดรหัสปลดล็อกคณะที่ใช่กับ AI</p>
+            </div>
+        </div>
+        <div class="card-content" onclick="stopProp(event)">
+            <label>1. เวลาว่างคุณชอบทำกิจกรรมอะไรมากที่สุด?</label>
+            <select id="p5-q1">
+                <option value="ชอบแก้โจทย์ คิดตรรกะ หรือเล่นเกมวางแผน">แก้โจทย์ คิดตรรกะ เล่นเกมวางแผน</option>
+                <option value="ชอบวาดรูป แต่งจอย ฟังเพลง ทำคอนเทนต์">งานศิลปะ ออกแบบ ทำคอนเทนต์ Creative</option>
+                <option value="ชอบพูดคุย ให้คำปรึกษาเพื่อน ทำงานกลุ่ม">ช่วยเหลือคน พูดคุย ให้คำปรึกษา</option>
+                <option value="ชอบขายของ ออนไลน์ ทำบัญชี วางแผนธุรกิจ">คิดเรื่องเงิน ๆ ทอง ๆ วางแผนทำธุรกิจ</option>
+            </select>
 
-            // เปลี่ยนสถานะปุ่มที่เลือก
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(button => button.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            <label>2. คุณรู้สึกอึดอัดหรือเกลียดสิ่งไหนที่สุด?</label>
+            <select id="p5-q2">
+                <option value="การที่ต้องฝืนยิ้มบริการคนเยอะๆ ตลอดเวลา">การต้องดีลกับคนเยอะๆ ตลอดเวลา</option>
+                <option value="กฎระเบียบที่เป๊ะเกินไป ห้ามคิดนอกกรอบ">การอยู่ในกฎระเบียบที่ไร้จินตนาการ</option>
+                <option value="วิชาคำนวณ ตัวเลขเยอะๆ สูตรยุ่งยาก">ตัวเลขเยอะๆ หรือวิชาคำนวณยากๆ</option>
+                <option value="ความไม่แน่นอน งานที่ไม่มีแบบแผนชัดเจน">งานที่ไร้แบบแผนและไม่มีเป้าหมายชัดเจน</option>
+            </select>
 
-            // อัปเดตกราฟเวลาเปลี่ยนมาหน้าจัดอันดับ
-            if (contentId === 'ranking') {
-                updateChart(); 
+            <button onclick="sendToGeminiP5()">วิเคราะห์เบื้องต้นและปรึกษา AI ต่อ</button>
+        </div>
+    </div>
+
+    <div class="menu-card" onclick="toggleCard(this, event)">
+        <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
+            <div class="card-info">
+                <h2>6. ตะลุยแนวข้อสอบเก่า</h2>
+                <p>จำลองทำข้อสอบวิชาชีพพร้อมระบบจับเวลาและระบบตรวจคะแนนอิงคำใบ้ทันที</p>
+            </div>
+        </div>
+        <div class="card-content" onclick="stopProp(event)">
+            <p style="color:var(--text-sub); font-size:0.9rem; text-align:center; padding:10px 0;">
+                🔒 [ส่วนนี้มีโค้ดข้อสอบเดิมของคุณอยู่แล้ว สามารถนำมาเชื่อมต่อได้เลยครับ]
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ฟังก์ชัน เปิด-ปิดการขยายการแสดงผลของ Card แนวตั้ง
+    function toggleCard(card, event) {
+        const content = card.querySelector('.card-content');
+        const isActive = content.classList.contains('active');
+        
+        // ปิดอันอื่นก่อน
+        document.querySelectorAll('.card-content').forEach(el => el.classList.remove('active'));
+        
+        if (!isActive) {
+            content.classList.add('active');
+        }
+    }
+
+    function stopProp(event) {
+        event.stopPropagation(); // กันไม่ให้กดข้างในแล้วยุบการ์ดกลับ
+    }
+
+    // ปุ่ม 1: ส่งคำค้นหาอัจฉริยะไปหา Gemini
+    function sendToGeminiP1() {
+        const text = document.getElementById('p1-input').value.trim();
+        if(!text) return alert('กรุณากรอกข้อความก่อนครับ');
+        
+        const prompt = `ฉันกำลังเตรียมตัวสอบ TCAS 2026 ช่วยวิเคราะห์ข้อมูลนี้ให้หน่อย: "${text}" ขอแบบสรุปแผนการอ่านหนังสือ คณะที่เกี่ยวข้อง และคะแนนเป้าหมายที่ควรได้แยกตามวิชาให้ละเอียดทีครับ`;
+        window.open(`https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`, '_blank');
+    }
+
+    // ปุ่ม 2: สลับหน้าตาการกรอกเกรดตามจำนวนเทอม
+    function handleTermChange() {
+        const terms = parseInt(document.getElementById('p2-terms').value);
+        const prevContainer = document.getElementById('p2-prev-gpa-container');
+        const prevLabel = document.getElementById('p2-prev-label');
+        
+        if(terms === 1) {
+            prevContainer.style.display = 'none';
+        } else {
+            prevContainer.style.display = 'block';
+            prevLabel.innerText = `เกรดเฉลี่ยสะสม (GPAX) ของ ${terms - 1} เทอมที่ผ่านมา:`;
+        }
+    }
+
+    // ปุ่ม 2: ฟังก์ชันคำนวณเกรดและดึงบิ๊กดาต้าวิเคราะห์อาชีพ
+    function calculateGPAX() {
+        const terms = parseInt(document.getElementById('p2-terms').value);
+        const subjects = {
+            'ชีววิทยา': parseFloat(document.getElementById('g-bio').value) || 0,
+            'เคมี': parseFloat(document.getElementById('g-chem').value) || 0,
+            'ฟิสิกส์': parseFloat(document.getElementById('g-phy').value) || 0,
+            'คณิตศาสตร์': parseFloat(document.getElementById('g-math').value) || 0,
+            'ภาษาอังกฤษ': parseFloat(document.getElementById('g-eng').value) || 0,
+            'ภาษาไทย': parseFloat(document.getElementById('g-thai').value) || 0,
+            'สังคมศึกษา': parseFloat(document.getElementById('g-social').value) || 0
+        };
+
+        // หาเฉลี่ยของเทอมนี้
+        let sum = 0;
+        let highestSub = '';
+        let maxGrade = -1;
+
+        for (let sub in subjects) {
+            sum += subjects[sub];
+            if(subjects[sub] > maxGrade) {
+                maxGrade = subjects[sub];
+                highestSub = sub;
             }
         }
+        let currentTermAvg = sum / 7;
+        let finalGPAX = currentTermAvg;
 
-        // ฟังก์ชันค้นหาคณะ (ดึงข้อมูลจาก JSON จำลอง จริง!)
-        function searchCourses() {
-            const input = document.getElementById('search-input').value.toLowerCase();
-            const tableBody = document.getElementById('results-table').querySelector('tbody');
-            tableBody.innerHTML = ''; // เคลียร์ตารางเดิม
-
-            const results = coursesData.filter(course => 
-                course.name.toLowerCase().includes(input) || 
-                course.uni.toLowerCase().includes(input)
-            );
-
-            if (results.length > 0) {
-                results.forEach(course => {
-                    const row = tableBody.insertRow();
-                    row.insertCell(0).innerText = course.name;
-                    row.insertCell(1).innerText = course.uni;
-                    row.insertCell(2).innerText = course.y68;
-                    row.insertCell(3).innerText = course.y67;
-                    row.insertCell(4).innerText = course.y66;
-                });
-            } else {
-                const row = tableBody.insertRow();
-                row.insertCell(0).innerText = "ไม่พบข้อมูล";
-                row.insertCell(1).innerText = "-";
-                row.insertCell(2).innerText = "-";
-                row.insertCell(3).innerText = "-";
-                row.insertCell(4).innerText = "-";
-            }
+        // ถ้ามีคำนวณเทอมเก่าด้วย
+        if(terms > 1) {
+            const prevGpa = parseFloat(document.getElementById('p2-prev-gpa').value);
+            if(isNaN(prevGpa)) return alert('กรุณากรอกเกรดเฉลี่ยของเทอมก่อนหน้าด้วยครับ');
+            finalGPAX = ((prevGpa * (terms - 1)) + currentTermAvg) / terms;
         }
 
-        // ฟังก์ชันคำนวณ GPA (ยังเป็นแบบจำลองง่ายๆ)
-        function calculateGPA() {
-            // โค้ดคำนวณเกรดสามารถเพิ่มได้ตามต้องการ
-            document.getElementById('gpa-result').innerHTML = "<b>ผลการวิเคราะห์:</b> จากเกรดเฉลี่ยที่กรอก ดูเหมือนหนูจะมีความโดดเด่นในสาย [เลือกสายอาชีพตามเกรดที่เด่น] ลองพิจารณาคณะ [ชื่อคณะที่แนะนำ] ดูสิคะ";
+        // คลังข้อมูลสำหรับจับคู่กลุ่มวิชาเด่น -> คณะและอาชีพ
+        let careerAnalysis = "";
+        if(['คณิตศาสตร์', 'ฟิสิกส์', 'เคมี'].includes(highestSub)) {
+            careerAnalysis = `<strong>🎯 กลุ่มวิชาเด่นด้านคำนวณและวิทยาศาสตร์กายภาพ:</strong><br>
+            • <strong>คณะที่แนะนำ:</strong> วิศวกรรมศาสตร์ (คอมพิวเตอร์/ไฟฟ้า/โยธา), วิทยาศาสตร์ข้อมูล (Data Science), สถาปัตยกรรมศาสตร์ หรือ เทคโนโลยีสารสนเทศ<br>
+            • <strong>อาชีพในอนาคต:</strong> นักพัฒนาระบบ (Software Engineer), นักวิเคราะห์ข้อมูล (Data Analyst), วิศวกร AI, หรือผู้เชี่ยวชาญด้านความปลอดภัยไซเบอร์<br>
+            • <strong>เหตุผลวิเคราะห์:</strong> คะแนนในพาร์ทตรรกะและเหตุผลของคุณสูงมาก เหมาะกับสายงานที่ต้องแก้ไขปัญหาเชิงซ้อน การเขียนโปรแกรม และการคำนวณโครงสร้าง`;
+        } else if(['ชีววิทยา', 'เคมี'].includes(highestSub)) {
+            careerAnalysis = `<strong>🎯 กลุ่มวิชาเด่นด้านวิทยาศาสตร์สุขภาพและชีวภาพ:</strong><br>
+            • <strong>คณะที่แนะนำ:</strong> แพทยศาสตร์, ทันตแพทยศาสตร์, เภสัชศาสตร์, สหเวชศาสตร์ หรือ เทคโนโลยีชีวภาพ<br>
+            • <strong>อาชีพในอนาคต:</strong> แพทย์, เภสัชกรกรประจำโรงพยาบาล/บริษัทข้ามชาติ, นักวิจัยห้องแล็บมหาลัย, นักคิดค้นนวัตกรรมอาหารอาหาร (Food Tech)<br>
+            • <strong>เหตุผลวิเคราะห์:</strong> คุณมีความเข้าใจในระบบและโครงสร้างอินทรีย์ที่ซับซ้อน เหมาะกับการวิเคราะห์โรค ยา และนวัตกรรมสิ่งมีชีวิต`;
+        } else if(['ภาษาอังกฤษ', 'ภาษาไทย', 'สังคมศึกษา'].includes(highestSub)) {
+            careerAnalysis = `<strong>🎯 กลุ่มวิชาเด่นด้านภาษา ศิลปศาสตร์ และสังคมเชิงคิดวิเคราะห์:</strong><br>
+            • <strong>คณะที่แนะนำ:</strong> อักษรศาสตร์/ศิลปศาสตร์, นิติศาสตร์, นิเทศศาสตร์, รัฐศาสตร์ หรือ บริหารธุรกิจ (การตลาด)<br>
+            • <strong>อาชีพในอนาคต:</strong> นักกฎหมายองค์กร, ทูต, นักการตลาดดิจิทัล, Content Creator, ล่าม AI หรือ ผู้บริหารฝ่ายบุคคล<br>
+            • <strong>เหตุผลวิเคราะห์:</strong> คอนเนคชั่น ทักษะการสื่อสาร และความเข้าใจในพฤติกรรมมนุษย์คือจุดแข็งของคุณ สายงานที่ต้องการการโน้มน้าวใจและการเจรจาระดับสูงจะตอบโจทย์มาก`;
+        } else {
+            careerAnalysis = `<strong>🎯 กลุ่มวิชาสมดุลบาลานซ์ดีเยี่ยม:</strong> มีคะแนนใกล้เคียงกันในหลายหมวดหมู่ แนะนำให้มุ่งเน้นไปทางคณะบริหารธุรกิจ, บัญชี หรือ การจัดการเทคโนโลยี ซึ่งเปิดกว้างรับทุกสายการเรียน`;
         }
 
-        // ฟังก์ชันอัปเดตกราฟแท่ง (ทำให้กราฟเด้งขึ้นมาแบบอลังการ!)
-        function updateChart() {
-            const rank1 = document.getElementById('rank-1').value;
-            const bars = {
-                med: document.getElementById('bar-med'),
-                eng: document.getElementById('bar-eng'),
-                law: document.getElementById('bar-law')
-            };
+        const resBox = document.getElementById('p2-result');
+        resBox.style.display = 'block';
+        resBox.innerHTML = `
+            <strong>📊 ผลการประมวลผลระบบ TCAS Hub:</strong><br>
+            • เกรดเฉลี่ยเฉพาะเทอมนี้: <strong>${currentTermAvg.toFixed(2)}</strong><br>
+            • เกรดเฉลี่ยสะสมรวมทั้งหมด (${terms} เทอม): <span style="color:#9d4edd; font-size:1.1rem; font-weight:bold;">${finalGPAX.toFixed(2)}</span><br>
+            • วิชาที่ทำคะแนนได้สูงสุด: <strong>${highestSub} (${maxGrade.toFixed(2)})</strong><br><br>
+            ${careerAnalysis}
+        `;
+    }
 
-            // เคลียร์กราฟทั้งหมด
-            for (let key in bars) {
-                bars[key].style.height = '0px';
-            }
+    // ปุ่ม 3: ข้อมูลเกณฑ์คะแนน (รวมมหาลัย)
+    function showFacultyInfo() {
+        const fac = document.getElementById('p3-faculty').value;
+        const resBox = document.getElementById('p3-result');
+        if(!fac) { resBox.style.display = 'none'; return; }
+        
+        resBox.style.display = 'block';
+        
+        const db = {
+            med: { title: "กลุ่มแพทยศาสตร์ / ทันตะ / เภสัช (กสพท)", seats: "~2,500 - 3,000 ที่นั่งทั่วประเทศ", lowHigh: "ต่ำสุด 62% - สูงสุด 84% (คะแนนรวมกสพท)", weight: "TPAT1 (30%) + TPAT3/A-Level 7 วิชาหลัก (70%)" },
+            eng: { title: "คณะวิศวกรรมศาสตร์ (ภาพรวม)", seats: "~8,000 ที่นั่ง", lowHigh: "ต่ำสุด 42% (ม.ภูมิภาค) - สูงสุด 72% (จุฬาฯ/ลาดกระบัง)", weight: "TGAT (20-30%) + TPAT3 ความถนัดวิศวะ (30-40%) + A-Level คณิต1/ฟิสิกส์ (30-40%)" },
+            com: { title: "คณะวิทยาศาสตร์ คอมฯ / เทคโนโลยีสารสนเทศ", seats: "~5,500 ที่นั่ง", lowHigh: "ต่ำสุด 38% - สูงสุด 68%", weight: "TGAT (30%) + TPAT3 (20%) + A-Level คณิต1 หรือ คณิต2 + คอมพิวเตอร์/วิทยาศาสตร์ทั่วไป" },
+            biz: { title: "คณะพาณิชยศาสตร์และการบัญชี / บริหารธุรกิจ", seats: "~6,000 ที่นั่ง", lowHigh: "ต่ำสุด 45% - สูงสุด 74%", weight: "TGAT (40-50%) + A-Level คณิต1 หรือ คณิต2 (30%) + ภาษาอังกฤษ (20%)" },
+            arts: { title: "คณะอักษรศาสตร์ / ศิลปศาสตร์ / มนุษยศาสตร์", seats: "~4,000 ที่นั่ง", lowHigh: "ต่ำสุด 40% - สูงสุด 70%", weight: "TGAT (50%) + A-Level ภาษาไทย/สังคม (20%) + ภาษาอังกฤษ หรือภาษาต่างประเทศอื่นๆ (30%)" }
+        };
 
-            // แสดงกราฟตามอันดับ 1 ที่เลือก
-            if (bars[rank1]) {
-                bars[rank1].style.height = '180px'; // ตั้งความสูงตามคณะที่เลือก
-            }
+        const data = db[fac];
+        resBox.innerHTML = `
+            <strong>📌 เกณฑ์เฉลี่ยกลาง: ${data.title}</strong><br>
+            • 🪑 จำนวนที่นั่งรับรวม: ${data.seats}<br>
+            • 📈 สถิติคะแนน [ต่ำสุด - สูงสุด]: ${data.lowHigh}<br>
+            • 📝 สัดส่วนวิชาที่ใช้หลักๆ: <span style="color:#9d4edd;">${data.weight}</span>
+        `;
+    }
+
+    // ปุ่ม 4: ระบบบันทึกสะสมความชอบรายวัน (รีเซ็ตทุก 7 วันอัตโนมัติ)
+    function saveDailyLog() {
+        const c1 = document.getElementById('p4-c1').value.trim();
+        const c2 = document.getElementById('p4-c2').value.trim();
+        const c3 = document.getElementById('p4-c3').value.trim();
+
+        if(!c1 || !c2 || !c3) return alert('กรอกให้ครบทั้ง 3 อันดับนะครับ');
+
+        let logs = JSON.parse(localStorage.getItem('tcas_daily_logs')) || [];
+        
+        // ถ้าระบบเกิน 7 วัน ให้ทำการรีเซ็ตเซ็ตค่าใหม่ตามกฎสัปดาห์
+        if(logs.length >= 7) {
+            logs = []; 
         }
 
-        // ฟังก์ชันเปิดวาร์ปไป AI (Gemini) พร้อมคำสั่งฉลาดๆ
-        function sendToAI() {
-            const userInput = document.getElementById('ai-user-input').value.trim();
+        logs.push({ day: logs.length + 1, choices: [c1, c2, c3] });
+        localStorage.setItem('tcas_daily_logs', JSON.stringify(logs));
 
-            if (userInput === "") {
-                alert("พิมพ์บอกเล่าความชอบหรือสไตล์ของอ้วนก่อนน้าา ถึงจะส่งให้ AI วิเคราะห์ได้!");
-                return;
-            }
+        // ประมวลผลแนวโน้มเป็น % จากประวัติทั้งหมดในสัปดาห์นั้น
+        let totalEntries = logs.length * 3;
+        let counts = {};
+        logs.forEach(l => {
+            l.choices.forEach(choice => {
+                // ดึงเฉพาะคำแรกๆ เผื่อกรณีพิมพ์ชื่อคณะคล้ายกัน
+                let keyword = choice.split(" ")[0] || choice; 
+                counts[keyword] = (counts[keyword] || 0) + 1;
+            });
+        });
 
-            // สร้าง Prompt ฉลาดๆ เพื่อให้ AI ตอบได้ตรงประเด็น
-            const finalPrompt = `ฉันเป็นนักเรียนชั้น ม.ปลาย กำลังเตรียมตัวสอบเข้ามหาวิทยาลัย ` +
-                                `นี่คือความชอบ ทักษะ และสไตล์ของฉัน: "${userInput}" \n\n` +
-                                `ช่วยวิเคราะห์ สรุปผล และแนะนำคณะ/สาขาวิชาในมหาวิทยาลัยที่เหมาะสมกับฉัน ` +
-                                `พร้อมบอกเหตุผลสั้น ๆ และแนวทางการเตรียมตัวให้หน่อยค่ะ/ครับ`;
-
-            // เปิดวาร์ปไป Gemini
-            const encodedPrompt = encodeURIComponent(finalPrompt);
-            window.open("https://gemini.google.com/app?prompt=" + encodedPrompt, '_blank');
+        let percentageHTML = `<strong>📊 แนวโน้มเป้าหมายของคุณในสัปดาห์นี้ (บันทึกมาแล้ว ${logs.length}/7 วัน):</strong><br>`;
+        for(let key in counts) {
+            let pct = ((counts[key] / totalEntries) * 180).toFixed(0); // ถ่วงน้ำหนักจัดสัดส่วนให้ออกมาสวยงามรวม 100%
+            if (pct > 100) pct = 100;
+            percentageHTML += `• คณะสาย [${key}]: ความนิ่งของเป้าหมายอยู่ที่ประมาณ <strong>${(counts[key]/logs.length * 100).toFixed(0)}%</strong><br>`;
+        }
+        
+        if(logs.length === 7) {
+            percentageHTML += `<br><span style='color:orange;'>⚠️ ครบ 1 อาทิตย์เรียบร้อยแล้ว ระบบจะทำการเคลียร์ข้อมูลเริ่มต้นใหม่ในวันพรุ่งนี้ครับ</span>`;
         }
 
-        // โค้ดเพิ่มเติมอื่นๆ สำหรับส่วน Quiz ฯลฯ สามารถเพิ่มได้ตามต้องการ
-    </script>
+        const resBox = document.getElementById('p4-result');
+        resBox.style.display = 'block';
+        resBox.innerHTML = `✅ บันทึกข้อมูลวันนี้สำเร็จ!<br><br>${percentageHTML}`;
+    }
+
+    // ปุ่ม 5: ค้นหาตัวเองเบื้องต้นแล้วโยนไปให้ Gemini สรุปต่อ
+    function sendToGeminiP5() {
+        const q1 = document.getElementById('p5-q1').value;
+        const q2 = document.getElementById('p5-q2').value;
+
+        const prompt = `ฉันกำลังหาคณะที่ใช่ในระบบ TCAS โดยมีไลฟ์สไตล์คือ "${q1}" และสิ่งที่ไม่ชอบมากๆ คือ "${q2}" ช่วยวิเคราะห์และแนะนำ 3 คณะที่เหมาะที่สุด พร้อมเหตุผลและแนวทางการเตรียมตัวสอบให้อย่างละเอียดทีครับ`;
+        window.open(`https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`, '_blank');
+    }
+</script>
+
 </body>
-</html>max="4">
-`;
-
-}
-
-row.innerHTML=`
-
-<input
-type="text"
-class="subject"
-placeholder="ชื่อวิชา">
-
-${semesterInputs}
-
-<input
-type="number"
-class="credit"
-placeholder="หน่วยกิต">
-
-<button onclick="removeSubject(this)">
-ลบ
-</button>
-
-`;
-
-subjectContainer.appendChild(row);
-}
-
-function removeSubject(btn){
-btn.parentElement.remove();
-}
-
-function calculateGrade(){
-
-let subjects =
-document.querySelectorAll(".subject");
-
-let grades =
-document.querySelectorAll(".grade");
-
-let credits =
-document.querySelectorAll(".credit");
-
-let totalScore=0;
-let totalCredit=0;
-
-let data=[];
-
-for(let i=0;i<subjects.length;i++){
-
-let name=subjects[i].value;
-
-let grade=
-parseFloat(grades[i].value)||0;
-
-let credit=
-parseFloat(credits[i].value)||0;
-
-totalScore+=grade*credit;
-
-totalCredit+=credit;
-
-data.push({
-name:name,
-grade:grade
-});
-}
-
-let gpa=
-(totalScore/totalCredit).toFixed(2);
-
-document.getElementById("gpaResult")
-.innerHTML=
-"เกรดเฉลี่ย = "+gpa;
-
-data.sort(
-(a,b)=>b.grade-a.grade
-);
-
-let ranking="";
-
-data.forEach((item,index)=>{
-
-ranking+=
-(index+1)+". "
-+item.name+
-" ("+item.grade+")<br>";
-
-});
-
-document.getElementById("ranking")
-.innerHTML=ranking;
-
-recommendFaculty(data);
-analyzeField(data);
-}
-function recommendFaculty(data){
-
-let top=
-data[0]?.name||"";
-
-let result="";
-
-if(top.includes("ชีว")){
-
-result=
-`
-<h3>คณะที่แนะนำ</h3>
-
-<ul>
-<li>แพทยศาสตร์</li>
-<li>เภสัชศาสตร์</li>
-<li>สัตวแพทยศาสตร์</li>
-<li>พยาบาลศาสตร์</li>
-</ul>
-`;
-
-}
-
-else if(top.includes("คณิต")){
-
-result=
-`
-<h3>คณะที่แนะนำ</h3>
-
-<ul>
-<li>วิศวกรรมศาสตร์</li>
-<li>วิทยาการคอมพิวเตอร์</li>
-<li>บัญชี</li>
-</ul>
-`;
-
-}
-
-else{
-
-result=
-"กรอกข้อมูลเพิ่มเติม";
-}
-
-document.getElementById("facultyResult")
-.innerHTML=result;
-}
-
-addSubject();
-function analyzeField(data){
-
-let science=0;
-let math=0;
-let language=0;
-
-data.forEach(item=>{
-
-let name=item.name;
-
-if(
-name.includes("ชีว") ||
-name.includes("เคมี")
-){
-science += item.grade;
-}
-
-if(
-name.includes("คณิต") ||
-name.includes("ฟิสิกส์")
-){
-math += item.grade;
-}
-
-if(
-name.includes("ไทย") ||
-name.includes("อังกฤษ") ||
-name.includes("สังคม")
-){
-language += item.grade;
-}
-
-});
-
-let result="";
-
-if(science > math && science > language){
-
-result = `
-<h3>สายที่โดดเด่น</h3>
-
-วิทยาศาสตร์สุขภาพ
-
-เหมาะกับ
-
-• แพทยศาสตร์
-• เภสัชศาสตร์
-• พยาบาลศาสตร์
-• สัตวแพทยศาสตร์
-`;
-}
-
-else if(math > science && math > language){
-
-result = `
-<h3>สายที่โดดเด่น</h3>
-
-คำนวณและเทคโนโลยี
-
-เหมาะกับ
-
-• วิศวกรรมศาสตร์
-• วิทยาการคอมพิวเตอร์
-• สถิติ
-• บัญชี
-`;
-}
-
-else{
-
-result = `
-<h3>สายที่โดดเด่น</h3>
-
-ภาษาและสังคม
-
-เหมาะกับ
-
-• นิติศาสตร์
-• รัฐศาสตร์
-• นิเทศศาสตร์
-• อักษรศาสตร์
-`;
-}
-
-document.getElementById("facultyResult")
-.innerHTML += result;
-}
+</html>
